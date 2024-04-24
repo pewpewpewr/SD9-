@@ -1,0 +1,6 @@
+<h1>Delete Choice</h1>
+<p>Are you sure you want to delete the choice: "{{ choice.choice_text }}"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+</form>

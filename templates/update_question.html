@@ -1,0 +1,37 @@
+
+
+
+<h1>Update Question</h1>
+<form method="post">
+  {% csrf_token %}
+
+  {{ form.as_p }}
+
+  {{ formset.management_form }}
+ 
+  {% for choice_form in formset %}
+  <div>
+    {% for hidden in choice_form.hidden_fields %}
+
+    {{ hidden }}
+
+    {% endfor %}
+
+    {{ choice_form.choice_text.label }}
+ 
+    {{ choice_form.choice_text }}
+  
+    {% if choice_form.instance.pk %}
+    <a
+      href="{% url 'polls:delete_choice' question.id choice_form.instance.pk %}"
+    >
+      Delete
+    </a>
+    {% endif %}
+  </div>
+  {% endfor %}
+  <div>
+    <a href="{% url 'polls:create_choice' question.id %}">Add Choices</a>
+  </div>
+  <button type="submit">Update</button>
+</form>
